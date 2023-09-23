@@ -61,32 +61,8 @@ const getStatusService = async (service, initDate, endDate) => {
         const errorHealth = groupedHealth[key].filter((item) => item.health === 'down');
         const instanceAvailability = (groupedHealth[key].length - errorHealth.length) / groupedHealth[key].length;
         results.push({ availability: instanceAvailability});
-        // if (instanceAvailability > 0.9) {
-        //     results.push({ availability: 1});
-        // } else if (instanceAvailability > 0.7) {
-        //     results.push({ availability: 0});
-        // } else {
-        //     results.push({ availability: -1});
-        // }
     }
     let availability = results.reduce((a, b) => a + b.availability, 0);
-    console.log('--------_____>',results)
     availability = availability/ results.length;
-    console.log(availability)
     return { availability}
-
-    // if (availability === 0) {
-    //     return { availability: 0, docs}
-    // } else if (availability < 0) {
-    //     return { availability: -1, docs}
-    // } else{
-    //     availability = availability/ docs.length;
-    //     if (availability > 0.9) {
-    //         return { availability: 1, docs}
-    //     } else if (availability > 0.7) {
-    //         return { availability: 0, docs}
-    //     } else {
-    //         return { availability: -1, docs}
-    //     }
-    // }
 }
